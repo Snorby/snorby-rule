@@ -16,8 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-require 'snorby/rule/exceptions'
-require 'snorby/rule/import'
-require 'snorby/rule/location'
-require 'snorby/rule/rule'
-require 'snorby/rule/version'
+module Snorby  
+  module Rule
+    
+    class UnknownLocationType < StandardError; end
+    
+  end
+end

@@ -2,10 +2,13 @@ name: snorby-rule
 summary: "TODO: Summary"
 description: "TODO: Description"
 license: MIT
-authors: mephux
+authors: Dustin Willis Webber
 homepage: http://rubygems.org/gems/snorby-rule
 has_yard: true
 
+#dependencies:
+
 development_dependencies:
+  ore-core: ~> 0.1.1
   bundler: ~> 1.0.0
   yard: ~> 0.6.0
