@@ -1,0 +1,23 @@
+= snorby-rule
+
+* {Homepage}[http://rubygems.org/gems/snorby-rule]
+
+== Description
+
+TODO: Description
+
+== Features
+
+== Examples
+
+== Requirements
+
+== Install
+
+  $ gem install snorby-rule
+
+== Copyright
+
+Copyright (c) 2011 mephux
+
+See LICENSE.txt for details.
