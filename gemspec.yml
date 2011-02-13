@@ -6,7 +6,19 @@ authors: Dustin Willis Webber
 homepage: http://rubygems.org/gems/snorby-rule
 has_yard: true
 
-#dependencies:
+dependencies:
+  env: ~> 0.1.2
+  # DataMapper
+  dm-do-adapter: ~> 1.0.2
+  dm-sqlite-adapter: ~> 1.0.2
+  dm-core: ~> 1.0.2
+  dm-types: ~> 1.0.2
+  dm-constraints: ~> 1.0.2
+  dm-migrations: ~> 1.0.2
+  dm-validations: ~> 1.0.2
+  dm-serializer: ~> 1.0.2
+  dm-aggregates: ~> 1.0.2
+  dm-timestamps: ~> 1.0.2
 
 development_dependencies:
   ore-core: ~> 0.1.1

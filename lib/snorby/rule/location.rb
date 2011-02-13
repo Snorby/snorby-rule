@@ -16,12 +16,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-require 'pathname'
 require 'fileutils'
-require 'json'
+require 'pathname'
+require 'snorby/rule/rule_file'
 
 module Snorby
-  
+
   module Rule
 
     class Location
@@ -52,7 +52,7 @@ module Snorby
       end
 
       def unpack
-        return false if files.empty?
+        return false if files.to_a.empty?
         true
       end
 
@@ -74,18 +74,29 @@ module Snorby
         end
       end
 
-      def files  
-        return @files if defined? @files
-        
-        @files = []    
-        rule_files = File.join("**", "*.rules")
-        
-        Dir.glob(rule_files).each do |file|
-          @files.push Pathname.new(file)
+      def files(&block)
+        return enum_for(:files) unless block
+
+        unless defined?(@files)
+
+          @files = []
+          rule_files = File.join("**", "*.rules")
+
+          Dir.glob(rule_files).each do |file|
+            path = Pathname.new(file)
+            next unless path.parent.to_s == 'rules'
+            @files.push RuleFile.new(path)
+          end
+          
         end
-        
-        @files
+
+        if @files.kind_of?(Array)
+          @files.each(&block)
+        else
+          block.call(@files)
+        end
       end
+      alias :rule_file :files
 
       def filenames
         files.collect do |file|
@@ -93,11 +104,11 @@ module Snorby
         end
       end
 
-      private
+      def cleanup!
+        FileUtils.rm_rf(@temp_dir)
+      end
 
-        def clean_temperary_files
-          FileUtils.rm_rf(@temp_dir)
-        end
+      private
 
         def extract_and_return_files
           if file_exists?
@@ -145,5 +156,5 @@ module Snorby
     end
 
   end
-  
+
 end

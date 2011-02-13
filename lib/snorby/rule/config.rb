@@ -16,9 +16,21 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-require 'snorby/rule/config'
-require 'snorby/rule/exceptions'
-require 'snorby/rule/import'
-require 'snorby/rule/location'
-require 'snorby/rule/rule'
-require 'snorby/rule/version'
+require 'env'
+require 'snorby/rule/database/database'
+
+module Snorby
+
+  module Rule
+    
+    module Config
+      PATH = Home.join('.snorby')
+      RULE_DIR = PATH.join('rules')
+
+      PATH.mkdir unless PATH.directory?
+      RULE_DIR.mkdir unless RULE_DIR.directory?
+    end
+    
+  end
+  
+end
