@@ -16,8 +16,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-require 'yaml'
 require 'dm-core'
+require 'dm-migrations/migration_runner'
 
 module Snorby
   module Rule
@@ -29,6 +29,8 @@ module Snorby
 
       def Database.setup
         DataMapper.setup(:default, DEFAULT_REPOSITORY)
+        migrate_up!
+        
         # DataMapper::Logger.new(STDOUT, :debug)
         # DataMapper.logger.debug("Starting Migration")
       end

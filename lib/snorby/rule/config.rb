@@ -29,6 +29,12 @@ module Snorby
 
       PATH.mkdir unless PATH.directory?
       RULE_DIR.mkdir unless RULE_DIR.directory?
+    
+    
+      def Config.setup
+        Database.setup
+      end
+      
     end
     
   end
